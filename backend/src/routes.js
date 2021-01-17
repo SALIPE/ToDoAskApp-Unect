@@ -1,6 +1,6 @@
 //criando rotasd de conexão
 const express = require('express');
-const PostController = require('./controllers/PostController');
+const PostController = require('./controller/PostController');
 
 const routes = new express.Router(); 
 
