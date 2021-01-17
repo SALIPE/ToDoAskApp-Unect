@@ -1,9 +1,12 @@
 //criando rotasd de conexão
 const express = require('express');
-const PostController = require('./controllers/PostController');
+const multer = require('multer');
+const PostController = require('./controller/PostController');
 
 const routes = new express.Router(); 
+const upload = multer();
 
-routes.post('/posts', PostController.store);
+routes.post('/posts',upload.single(), PostController.store);
+routes.get('/posts', PostController.index);
 
 module.exports = routes;
