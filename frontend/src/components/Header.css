@@ -1,0 +1,46 @@
+header {
+  width: 100%;
+}
+header .header-content {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 408px;
+}
+
+header .header-content h1 {
+  text-align: center;
+  color: rgba(0, 176, 255, 1);
+  font-weight: 500;
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+header .add-task {
+  width: 328px;
+  height: 49px;
+  margin-left: 40px;
+  background: rgba(53, 46, 148, 0.2);
+  border-radius: 25px;
+}
+header form {
+  height: 100%;
+}
+header .header-content input {
+  width: 80%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+header .header-content button {
+  position: relative;
+  height: 25px;
+  top: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
