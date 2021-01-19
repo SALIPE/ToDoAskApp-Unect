@@ -5,12 +5,8 @@ module.exports = {
 
     async update(req, res){
         const id = req.params.id;
-        //terminar falta conseguir alterar o valor, ja consegue selecionar via id
-        const post = await Post.findByIdAndUpdate(id)
-
-         
-
-      
+        const post = await Post.findByIdAndUpdate(id,{complete:true})
+        
       return res.json(post)
     }
 
