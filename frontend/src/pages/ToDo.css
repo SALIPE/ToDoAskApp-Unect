@@ -1,4 +1,4 @@
-header {
+header #main-header {
   width: 100%;
 }
 header .header-content {
@@ -43,4 +43,9 @@ header .header-content button {
   border: 0;
   background: transparent;
   cursor: pointer;
+}
+
+section {
+  width: 408px;
+  margin: auto;
 }
