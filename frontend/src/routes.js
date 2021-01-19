@@ -2,13 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Vazio from './pages/Vazio';
+import ToDo from './pages/ToDo';
+
 
 function Routes () {
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/Vazio" component={Vazio} />
+      <Route path="/" exact component={Home} />
+      <Route path="/todo" component={ToDo} />
     </Switch>
   );
 }

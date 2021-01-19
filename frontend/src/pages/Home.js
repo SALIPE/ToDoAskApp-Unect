@@ -4,7 +4,7 @@ class Home extends Component {
   render() {
     return (
     <div>
-      <h2>To do</h2>
+      <h2>Nada pra fazer</h2>
     </div>
     
     );
