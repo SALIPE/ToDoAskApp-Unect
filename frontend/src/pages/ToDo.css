@@ -20,7 +20,7 @@ header .add-task {
   width: 328px;
   height: 49px;
   margin-left: 40px;
-  background: rgba(53, 46, 148, 0.2);
+  background: rgba(13, 13, 14, 0.2);
   border-radius: 25px;
 }
 header form {
@@ -40,7 +40,7 @@ header .header-content button {
   position: relative;
   height: 25px;
   top: 8px;
-  border: 0;
+  border: none;
   background: transparent;
   cursor: pointer;
 }
@@ -48,4 +48,41 @@ header .header-content button {
 section {
   width: 408px;
   margin: auto;
+}
+
+section h2 {
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+section div.tarefas {
+  width: 408px;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 4px;
+  white-space: pre-line;
+  margin-bottom: 6px;
+  float: left;
+}
+
+section .tarefas p {
+  margin: 14px;
+  margin-left: 16px;
+  float: left;
+  max-width: 320px;
+}
+section div.tarefas div.bttask {
+  width: 55px;
+  float: right;
+  margin-top: 4%;
+}
+
+section div.tarefas button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+section div.tarefas button.btdone {
+  margin-right: 15px;
 }

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 
 import './ToDo.css';
 import addbt from '../assets/add.svg';
+import donebt from '../assets/Done.svg';
+import deletebt from '../assets/Delete.svg';
 
 export default class ToDo extends Component {
   constructor() {
@@ -29,10 +31,15 @@ export default class ToDo extends Component {
         <section>
           <div className="Afazer">
             <h2>To Do</h2>
-            <div className = "tarefas">
-              { this.state.tarefas.map(tarefa => <p>{tarefa}</p>)}
+              {this.state.tarefas.map(tarefa =>
+              <div className = "tarefas">
+                <p>{tarefa}</p>
+                <div className = "bttask">
+                  <button className = "btdone"><img src={donebt} /></button>
+                  <button className = "btdelete"><img src={deletebt} /></button>
+                </div>
+              </div>)}
             </div>
-          </div>
         </section>
       </Fragment>
     );
