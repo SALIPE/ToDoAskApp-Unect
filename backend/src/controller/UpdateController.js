@@ -5,9 +5,16 @@ module.exports = {
 
     async update(req, res){
         const id = req.params.id;
-        const post = await Post.findByIdAndUpdate(id,{complete:true})
+        const postUpdated = await Post.findByIdAndUpdate(id,{complete:true})
+        //caso haja algum erro por algum motivo retornar msg de erro 
+        .then(msg =>{
+          res.status(200).json(msg)
+        })
+        .catch(err => { 
+          res.status(500).json(err)
+        })
         
-      return res.json(post)
+      return res.json(postUpdated)
     }
 
 };
