@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-    todo: String,
+    todo:{
+        type: String,
+        required : true,
+    },complete:{
+        type: Boolean,
+        default: false,
+    }
 },{
     timestamps: true,
 });
