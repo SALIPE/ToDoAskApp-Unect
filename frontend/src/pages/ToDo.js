@@ -57,23 +57,25 @@ const ListaView = (props) => (
       <h1>uTask</h1>
       <div className="add-task">
         <input name = "inputTarefa" onChange = {props.onChange} value = {props.inputTarefa}></input>
-        <button onClick = {props.adicionarTarefa}><img src={addbt}/></button>
+        <button className="btadd" onClick = {props.adicionarTarefa}><img src={addbt} alt="btadd"/></button>
       </div>
     </div>
   </header>
   <section>
     <div className="Afazer">
-      <h2>To Do</h2>
+      <h2>TODO</h2>
       {props.tarefas.map((tarefa, id) =>
       <div className = "tarefas">
         <p>{tarefa}</p>
         <div className = "bttask">
-          <button className = "btdone"><img src={donebt} /></button>
-          <button className = "btdelete" onClick = {() => props.removeTarefa(id)}><img src={deletebt} /></button>
+          <button className = "btdone"><img src={donebt} alt="btndone" /></button>
+          <button className = "btdelete" onClick = {() => props.removeTarefa(id)}><img src={deletebt} alt="btdelete" /></button>
         </div>
       </div>)}
+    </div>
 
-     
+      <div className="feito">
+      <h2>DONE</h2> 
     </div>
   </section>
 </Fragment>
