@@ -26,8 +26,8 @@ module.exports = {
             todo,
         })
 
-
-        return res.json(post);
+        req.io.emit('post', post)
+        return res.json(post)
     }
 
 };

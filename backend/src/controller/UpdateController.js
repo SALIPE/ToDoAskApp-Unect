@@ -14,6 +14,8 @@ module.exports = {
           res.status(500).json(err)
         })
         
+      req.io.emit('update', postUpdated)
+        
       return res.json(postUpdated)
     }
 

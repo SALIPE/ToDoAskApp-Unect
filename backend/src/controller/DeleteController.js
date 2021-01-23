@@ -12,6 +12,8 @@ module.exports = {
         .catch(err => { 
           res.status(500).json(err)
         })
+
+      req.io.emit('delete', postDelete)  
         
       return res.json({"deletado": true})
     }
