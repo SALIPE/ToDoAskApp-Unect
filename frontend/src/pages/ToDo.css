@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 header #main-header {
   width: 100%;
@@ -37,7 +36,6 @@ header .header-content input {
   margin-left: 20px;
   font-size: 16px;
   font-weight: 400;
-
   color: #44434f;
   font-family: Roboto;
   font-size: 18px;
@@ -53,45 +51,36 @@ header .header-content button {
   cursor: pointer;
   padding: 5px 5px 30px 5px;
 }
-header .header-content button.btadd:hover{
+header .header-content button.btadd:hover {
   transition: 300ms;
   background-color: rgba(46, 191, 235, 0.3);
   border-radius: 50%;
-
 }
 
 section {
-  width: 408px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-section h2 {
-
-color: #5C5A6C;
-font-family: Roboto;
-font-size: 22px;
-font-weight: 500 bolder;
-line-height: 26px;
-letter-spacing: 0em;
-text-align: center;
-
-  margin-bottom: 26px;
+div h2 {
+  color: rgba(92, 90, 108, 1);
+  font-family: Roboto;
+  font-size: 22px;
+  font-weight: 500 bolder;
   text-align: center;
-
+  margin-bottom: 26px;
+  padding: 0;
 }
 
-section p{
+section p {
   color: #44434f;
   font-family: Roboto;
   font-size: 18px;
   font-weight: bolder;
-  word-wrap:break-word;
-
+  word-wrap: break-word;
 }
 
-
-
 section div.tarefas {
+  margin: auto;
   display: flex;
   width: 430px;
   border: 1px solid #dfdfdf;
@@ -99,7 +88,6 @@ section div.tarefas {
   border-radius: 4px;
   white-space: pre-line;
   margin-bottom: 6px;
-  float: left;
   align-items: center;
 }
 
@@ -110,9 +98,8 @@ section .tarefas p {
 }
 section div.tarefas div.bttask {
   position: relative;
-  display:flex;
+  display: flex;
   width: 55px;
-
 }
 
 section div.tarefas button {
@@ -123,29 +110,32 @@ section div.tarefas button {
   border: none;
   cursor: pointer;
   padding: 5px 8px 5px 8px;
- 
 }
 
 section div.tarefas button.btdone {
- 
   margin-right: 10px;
-
 }
 section div.tarefas button.btdelete {
   margin-right: 10px;
-
-
 }
 
 section div.tarefas button.btdone:hover {
   transition: 500ms;
   background-color: rgba(48, 245, 97, 0.3);
   border-radius: 50%;
-  
 }
+
 section div.tarefas button.btdelete:hover {
   transition: 500ms;
   background-color: rgba(242, 113, 74, 0.3);
   border-radius: 50%;
-  
+}
+
+section div.feito {
+  margin-top: 44px;
+}
+
+section div.feito h2 {
+  color: rgba(92, 90, 108, 1);
+  opacity: 70%;
 }

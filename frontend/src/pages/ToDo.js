@@ -1,17 +1,33 @@
 import React, { Component, Fragment } from 'react';
+import api from '../service/api';
 import './ToDo.css';
 import addbt from '../assets/add.svg';
 import donebt from '../assets/Done.svg';
 import deletebt from '../assets/Delete.svg';
 
 export default class ToDo extends Component {
-  constructor() {
+  state={
+    tarefas:[],
+    feitos:[],
+  };
+
+ /* constructor() {
     super();
     this.state = { 
       tarefas: [],
       inputTarefa: ''
-    };
+    };*/
 
+    async componentDidMount(){
+      const response = await api.get('posts/todo');
+      const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
+    }
+/*
     this.adicionarTarefa = (event) => {
       event.preventDefault();
       const tarefas = this.state.tarefas.slice();
@@ -20,7 +36,7 @@ export default class ToDo extends Component {
         tarefas: tarefas,
         inputTarefa: ''
       });
-    }
+    };
 
     this.removeTarefa = (id) => {
       const tarefas = this.state.tarefas.slice();
@@ -34,49 +50,63 @@ export default class ToDo extends Component {
       state[event.target.name] = event.target.value;
       this.setState(state);
     };
-  }
+  };*/
 
   render() {
     return (
-      <ListaView
+      /*<ListaView
         tarefas = {this.state.tarefas}
         inputTarefa = {this.state.inputTarefa}
         onChange = {this.onChange}
         adicionarTarefa = {this.adicionarTarefa}
         removeTarefa = {this.removeTarefa}
         
-      />    
+      />*/ 
+      
+      <Fragment >
+
+      <header id="main-header">
+        <div className = "header-content">
+          <h1>uTask</h1>
+          <div className="add-task">
+            <input name = "inputTarefa"></input>
+            <button className="btadd"><img src={addbt} alt="btadd"/></button>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <div className="Afazer">
+          <h2>TODO</h2>
+          {this.state.tarefas.map(post=>(
+          <div className = "tarefas">
+            <p>{post.todo}</p>
+            <div className = "bttask">
+              <button className = "btdone"><img src={donebt} alt="btndone" /></button>
+              <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
+            </div>
+          </div>))}
+        </div>
+    
+        <div className="feito">
+          <h2>DONE</h2>
+          {this.state.feitos.map(post=>(
+          <div className = "tarefas">
+            <p>{post.todo}</p>
+            <div className = "bttask">
+              <button className = "btdone"><img src={donebt} alt="btndone" /></button>
+              <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
+            </div>
+          </div>))}
+          </div>
+      </section> 
+        
+      
+    </Fragment>
     );
   }
 }
 
-const ListaView = (props) => (
-  <Fragment >
-  <header id="main-header">
-    <div className = "header-content">
-      <h1>uTask</h1>
-      <div className="add-task">
-        <input name = "inputTarefa" onChange = {props.onChange} value = {props.inputTarefa}></input>
-        <button className="btadd" onClick = {props.adicionarTarefa}><img src={addbt} alt="btadd"/></button>
-      </div>
-    </div>
-  </header>
-  <section>
-    <div className="Afazer">
-      <h2>TODO</h2>
-      {props.tarefas.map((tarefa, id) =>
-      <div className = "tarefas">
-        <p>{tarefa}</p>
-        <div className = "bttask">
-          <button className = "btdone"><img src={donebt} alt="btndone" /></button>
-          <button className = "btdelete" onClick = {() => props.removeTarefa(id)}><img src={deletebt} alt="btdelete" /></button>
-        </div>
-      </div>)}
-    </div>
-
-      <div className="feito">
-      <h2>DONE</h2> 
-    </div>
-  </section>
-</Fragment>
-)
+/*const ListaView = (props) => (
+ 
+);*/
