@@ -64,6 +64,7 @@ export default class ToDo extends Component {
       />*/ 
       
       <Fragment >
+
       <header id="main-header">
         <div className = "header-content">
           <h1>uTask</h1>
@@ -73,10 +74,10 @@ export default class ToDo extends Component {
           </div>
         </div>
       </header>
-      
+
+      <section>
         <div className="Afazer">
           <h2>TODO</h2>
-          <section>
           {this.state.tarefas.map(post=>(
           <div className = "tarefas">
             <p>{post.todo}</p>
@@ -85,12 +86,10 @@ export default class ToDo extends Component {
               <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
             </div>
           </div>))}
-        </section>
         </div>
     
         <div className="feito">
           <h2>DONE</h2>
-          <section>
           {this.state.feitos.map(post=>(
           <div className = "tarefas">
             <p>{post.todo}</p>
@@ -99,8 +98,9 @@ export default class ToDo extends Component {
               <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
             </div>
           </div>))}
-        </section> 
-        </div>
+          </div>
+      </section> 
+        
       
     </Fragment>
     );
