@@ -7,19 +7,14 @@ import donebt from '../assets/Done.svg';
 import deletebt from '../assets/Delete.svg';
 
 export default class ToDo extends Component {
-  state={
-    tarefas:[],
-    feitos:[],
-    todo:'',
-  };
-
- /* constructor() {
+   constructor() {
     super();
-    this.state = { 
-      tarefas: [],
-      inputTarefa: ''
-    };*/
-
+    this.state={
+      tarefas:[],
+      feitos:[],
+      todo:'',
+    };
+    };
     async componentDidMount(){
       this.registerToSocket();
 
@@ -33,20 +28,22 @@ export default class ToDo extends Component {
     }
 
     handleChange = e =>{
-      e.preventDefault();
       const state = Object.assign({},this.state);
       state[e.target.name] = e.target.value;
       this.setState(state);
     }
 
     registerToSocket=()=>{
-      const socket =io('http://localhost:3000');
+      const socket = io('http://localhost:3000')
+        socket.on('post', newPost => {
+            this.setState({tarefas: [newPost, ...this.state.tarefas]})
+        })
 
-      socket.on('update', updated=>{
-        this.setState({
-          tarefas: [updated, ...this.state.tarefas]
-        });
-      })
+        socket.on('update', updated => {
+            this.setState({ tarefas: this.state.tarefas.map(post => (
+                post._id === updated._id ? updated : post
+            )) })
+        })
     }
 
     handleSubmit  = async e =>{
@@ -54,6 +51,11 @@ export default class ToDo extends Component {
       const data = new FormData();
       data.append('todo', this.state.todo);
       await api.post('posts', data)
+
+      this.setState({
+        todo: ''
+      })
+      this.registerToSocket()
 
       
       console.log(this.state);
@@ -85,6 +87,11 @@ export default class ToDo extends Component {
 
   handleDone= id =>{
     api.put(`/posts/update/${id}`);
+
+  }
+
+  handleDelete= id =>{
+    api.delete(`/posts/delete/${id}`);
   }
 
   render() {
@@ -118,7 +125,7 @@ export default class ToDo extends Component {
             <p>{post.todo}</p>
             <div className = "bttask">
               <button className = "btdone" onClick={()=> this.handleDone(post._id) }><img src={donebt} alt="btndone" /></button>
-              <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
+              <button className = "btdelete" onClick={()=> this.handleDelete(post._id)}><img src={deletebt} alt="btdelete" /></button>
             </div>
           </div>))}
         </div>
@@ -129,7 +136,7 @@ export default class ToDo extends Component {
           <div key={post._id} className = "tarefas">
             <p>{post.todo}</p>
             <div className = "bttask">
-              <button className = "btdelete"><img src={deletebt} alt="btdelete" /></button>
+              <button className = "btdelete" onClick={()=> this.handleDelete(post._id)}><img src={deletebt} alt="btdelete" /></button>
             </div>
           </div>))}
           </div>
