@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
-import ToDo from './pages/ToDo';
+import Routes from '../src/Routes';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <ToDo />
+      <Routes />
     </BrowserRouter>
   );
 }
