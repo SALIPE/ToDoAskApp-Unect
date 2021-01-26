@@ -7,12 +7,12 @@ module.exports = {
         const id = req.params.id;
         const postUpdated = await Post.findByIdAndUpdate(id,{complete:true})
         //caso haja algum erro por algum motivo retornar msg de erro 
-        .then(msg =>{
+       /* .then(msg =>{
           res.status(200).json(msg)
         })
         .catch(err => { 
           res.status(500).json(err)
-        })
+        })*/
         
       req.io.emit('update', postUpdated)
         

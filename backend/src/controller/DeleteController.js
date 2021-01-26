@@ -6,12 +6,12 @@ module.exports = {
         const id = req.params.id;
         const postDelete = await Post.findByIdAndDelete(id)
         //caso haja algum erro por algum motivo retornar msg de erro 
-        .then(msg =>{
+       /*.then(msg =>{
           res.status(200).json(msg)
         })
         .catch(err => { 
           res.status(500).json(err)
-        })
+        })*/
 
       req.io.emit('delete', postDelete)  
         
