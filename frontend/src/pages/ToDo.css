@@ -96,6 +96,52 @@ section .tarefas p {
   margin-left: 16px;
   width: 320px;
 }
+
+section div.nontarefas {
+  margin: auto;
+  display: flex;
+  height: 100px;
+  width: 230px;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 4px;
+  white-space: pre-line;
+  margin-bottom: 6px;
+  align-items: center;
+}
+
+section .nontarefas p {
+  margin: 14px;
+  margin-left: 16px;
+  width: 320px;
+}
+
+section div.nonfeitos {
+  margin: auto;
+  display: flex;
+  height: 100px;
+  width: 230px;
+  border: 1px solid #dfdfdf;
+  box-sizing: border-box;
+  border-radius: 4px;
+  white-space: pre-line;
+  margin-bottom: 6px;
+  align-items: center;
+}
+
+section .nonfeitos p {
+  margin: 14px;
+  margin-left: 16px;
+  width: 320px;
+}
+
+section .nonfeitos img {
+  margin-left: 10px;
+}
+
+section .nontarefas img {
+  margin-left: 10px;
+}
 section div.tarefas div.bttask {
   position: relative;
   display: flex;
