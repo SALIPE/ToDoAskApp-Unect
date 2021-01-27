@@ -50,20 +50,19 @@ export default class ToDo extends Component {
     }
 
     handleSubmit  = async e =>{
-      
-      window.location.reload();
       const data = new FormData();
       data.append('todo', this.state.todo);
       await api.post('posts', data)
 
-      this.setState({
-        
-        todo: ''
-      })
-      
+      const response = await api.get('posts/todo');
+      const responseComplete = await api.get('posts/completed');
 
-      
-      console.log(this.state);
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data,
+        todo: ''
+      });
+    
     }
 /*
     this.adicionarTarefa = (event) => {
@@ -90,15 +89,32 @@ export default class ToDo extends Component {
     };
   };*/
 
-  handleDone= id =>{
-    window.location.reload();
+  handleDone= async id =>{
+    
     api.put(`/posts/update/${id}`);
+    
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
+
+      window.location.reload();
 
   }
 
-  handleDelete= id =>{
-    window.location.reload();
+  handleDelete= async id =>{
     api.delete(`/posts/delete/${id}`);
+
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
   }
 
   render() {
