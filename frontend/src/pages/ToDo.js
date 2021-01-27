@@ -5,6 +5,7 @@ import './ToDo.css';
 import addbt from '../assets/add.svg';
 import donebt from '../assets/Done.svg';
 import deletebt from '../assets/Delete.svg';
+import beach from '../assets/beach.svg';
 
 
 export default class ToDo extends Component {
@@ -50,20 +51,19 @@ export default class ToDo extends Component {
     }
 
     handleSubmit  = async e =>{
-      
-      window.location.reload();
       const data = new FormData();
       data.append('todo', this.state.todo);
       await api.post('posts', data)
 
-      this.setState({
-        
-        todo: ''
-      })
-      
+      const response = await api.get('posts/todo');
+      const responseComplete = await api.get('posts/completed');
 
-      
-      console.log(this.state);
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data,
+        todo: ''
+      });
+    
     }
 /*
     this.adicionarTarefa = (event) => {
@@ -90,15 +90,32 @@ export default class ToDo extends Component {
     };
   };*/
 
-  handleDone= id =>{
-    window.location.reload();
+  handleDone= async id =>{
+    
     api.put(`/posts/update/${id}`);
+    
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
+
+      window.location.reload();
 
   }
 
-  handleDelete= id =>{
-    window.location.reload();
+  handleDelete= async id =>{
     api.delete(`/posts/delete/${id}`);
+
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
   }
 
   render() {
@@ -128,6 +145,12 @@ export default class ToDo extends Component {
         <section>
           <div className="Afazer">
             <h2>TODO</h2>
+            {this.state.tarefas.length === 0 &&
+          <div className = "nontarefas">
+            <img src={beach} alt="nothing" />
+            <p>Nada a fazer</p>
+          </div>
+          }
             {this.state.tarefas.map(post=>(
             <div key={post._id} className = "tarefas">
               <p>{post.todo}</p>
@@ -140,6 +163,12 @@ export default class ToDo extends Component {
       
           <div className="feito">
             <h2>DONE</h2>
+            {this.state.feitos.length === 0 &&
+          <div className = "nonfeitos">
+            <img src={beach} alt="nothing" />
+            <p>Nada feito</p>
+          </div>
+          }
             {this.state.feitos.map(post=>(
             <div key={post._id} className = "tarefas">
               <p>{post.todo}</p>
