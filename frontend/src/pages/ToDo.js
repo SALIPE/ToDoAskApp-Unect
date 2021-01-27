@@ -5,6 +5,7 @@ import './ToDo.css';
 import addbt from '../assets/add.svg';
 import donebt from '../assets/Done.svg';
 import deletebt from '../assets/Delete.svg';
+import beach from '../assets/beach.svg';
 
 
 export default class ToDo extends Component {
@@ -144,6 +145,12 @@ export default class ToDo extends Component {
         <section>
           <div className="Afazer">
             <h2>TODO</h2>
+            {this.state.tarefas.length === 0 &&
+          <div className = "nontarefas">
+            <img src={beach} alt="nothing" />
+            <p>Nada a fazer</p>
+          </div>
+          }
             {this.state.tarefas.map(post=>(
             <div key={post._id} className = "tarefas">
               <p>{post.todo}</p>
@@ -156,6 +163,12 @@ export default class ToDo extends Component {
       
           <div className="feito">
             <h2>DONE</h2>
+            {this.state.feitos.length === 0 &&
+          <div className = "nonfeitos">
+            <img src={beach} alt="nothing" />
+            <p>Nada feito</p>
+          </div>
+          }
             {this.state.feitos.map(post=>(
             <div key={post._id} className = "tarefas">
               <p>{post.todo}</p>
