@@ -52,9 +52,14 @@ export default class ToDo extends Component {
       data.append('todo', this.state.todo);
       await api.post('posts', data)
 
+      const response = await api.get('posts/todo');
+      const responseComplete = await api.get('posts/completed');
+
       this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data,
         todo: ''
-      })
+      });
       this.registerToSocket()
 
       
@@ -85,13 +90,29 @@ export default class ToDo extends Component {
     };
   };*/
 
-  handleDone= id =>{
+  handleDone = async id =>{
     api.put(`/posts/update/${id}`);
+
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+      });
 
   }
 
-  handleDelete= id =>{
+  handleDelete = async id =>{
     api.delete(`/posts/delete/${id}`);
+    const response = await api.get('posts/todo');
+    const responseComplete = await api.get('posts/completed');
+
+      this.setState({
+        tarefas: response.data, 
+        feitos: responseComplete.data
+        
+      });
   }
 
   render() {
