@@ -7,6 +7,7 @@ import donebt from '../assets/Done.svg';
 import deletebt from '../assets/Delete.svg';
 import beach from '../assets/fxemoji_beachumbrella.svg';
 
+
 export default class ToDo extends Component {
    constructor() {
     super();
@@ -32,23 +33,26 @@ export default class ToDo extends Component {
       const state = Object.assign({},this.state);
       state[e.target.name] = e.target.value;
       this.setState(state);
+      
     }
 
     registerToSocket=()=>{
+      
       const socket = io('http://localhost:3000')
         socket.on('post', newPost => {
             this.setState({tarefas: [newPost, ...this.state.tarefas]})
         })
 
         socket.on('update', updated => {
-            this.setState({ tarefas: this.state.tarefas.map(post => (
-                post._id === updated._id ? updated : post
-            )) })
+            this.setState({ tarefas: this.state.tarefas.map(post => 
+                post._id === updated._id ? updated : post) 
+              })
         })
     }
 
     handleSubmit  = async e =>{
-  
+      
+      window.location.reload();
       const data = new FormData();
       data.append('todo', this.state.todo);
       await api.post('posts', data)
@@ -57,11 +61,18 @@ export default class ToDo extends Component {
       const responseComplete = await api.get('posts/completed');
 
       this.setState({
+<<<<<<< HEAD
         tarefas: response.data, 
         feitos: responseComplete.data,
         todo: ''
       });
       this.registerToSocket()
+=======
+        
+        todo: ''
+      })
+      
+>>>>>>> main
 
       
       console.log(this.state);
@@ -91,7 +102,12 @@ export default class ToDo extends Component {
     };
   };*/
 
+<<<<<<< HEAD
   handleDone = async id =>{
+=======
+  handleDone= id =>{
+    window.location.reload();
+>>>>>>> main
     api.put(`/posts/update/${id}`);
 
     const response = await api.get('posts/todo');
@@ -105,7 +121,12 @@ export default class ToDo extends Component {
 
   }
 
+<<<<<<< HEAD
   handleDelete = async id =>{
+=======
+  handleDelete= id =>{
+    window.location.reload();
+>>>>>>> main
     api.delete(`/posts/delete/${id}`);
     const response = await api.get('posts/todo');
     const responseComplete = await api.get('posts/completed');
@@ -130,6 +151,7 @@ export default class ToDo extends Component {
       
       <Fragment >
 
+<<<<<<< HEAD
       <header id="main-header">
         <div className = "header-content">
           <h1>uTask</h1>
@@ -174,10 +196,45 @@ export default class ToDo extends Component {
               <button className = "btdelete" onClick={()=> this.handleDelete(post._id)}><img src={deletebt} alt="btdelete" /></button>
             </div>
           </div>))}
+=======
+      <div className = "conteiner">
+        <header id="main-header">
+          <div className = "header-content">
+            <h1>uTask</h1>
+            <div className="add-task">
+              <input name ="todo" placeholder="Task" onChange={this.handleChange} value={this.state.todo}/>
+              <button type="submit" className="btadd" onClick={this.handleSubmit}><img src={addbt} alt="btadd"/></button>
+            </div>
+>>>>>>> main
           </div>
-      </section> 
-        
+        </header>
+
+        <section>
+          <div className="Afazer">
+            <h2>TODO</h2>
+            {this.state.tarefas.map(post=>(
+            <div key={post._id} className = "tarefas">
+              <p>{post.todo}</p>
+              <div className = "bttask">
+                <button className = "btdone" onClick={()=> this.handleDone(post._id) }><img src={donebt} alt="btndone" /></button>
+                <button className = "btdelete" onClick={()=> this.handleDelete(post._id)}><img src={deletebt} alt="btdelete" /></button>
+              </div>
+            </div>))}
+          </div>
       
+          <div className="feito">
+            <h2>DONE</h2>
+            {this.state.feitos.map(post=>(
+            <div key={post._id} className = "tarefas">
+              <p>{post.todo}</p>
+              <div className = "bttask">
+                <button className = "btdelete" onClick={()=> this.handleDelete(post._id)}><img src={deletebt} alt="btdelete" /></button>
+              </div>
+            </div>))}
+            </div>
+        </section> 
+        
+      </div>
     </Fragment>
     );
   }
