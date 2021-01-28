@@ -51,6 +51,12 @@ export default class ToDo extends Component {
     }
 
     handleSubmit  = async e =>{
+      e.preventDefault()
+
+      if (this.state.todo.length === 0) {
+        console.log('Digite uma tarefa!');
+
+      }else{
       const data = new FormData();
       data.append('todo', this.state.todo);
       await api.post('posts', data)
@@ -60,9 +66,11 @@ export default class ToDo extends Component {
 
       this.setState({
         tarefas: response.data, 
-        feitos: responseComplete.data,
-        todo: ''
+        feitos: responseComplete.data
       });
+
+      }
+      
     
     }
 
@@ -77,6 +85,8 @@ export default class ToDo extends Component {
         tarefas: response.data, 
         feitos: responseComplete.data
       });
+
+      
   }
 
   handleDelete= async id =>{
@@ -99,8 +109,10 @@ export default class ToDo extends Component {
           <div className = "header-content">
             <h1>uTask</h1>
             <div className="add-task">
-              <input name ="todo" placeholder="Task" onChange={this.handleChange} value={this.state.todo}/>
-              <button type="submit" className="btadd" onClick={this.handleSubmit}><img src={addbt} alt="btadd"/></button>
+              <form onSubmit  ={this.handleSubmit}>
+              <input name ="todo"  placeholder="Task" onChange={this.handleChange} value={this.state.todo} required/>
+              <button type="submit" className="btadd" ><img src={addbt} alt="btadd"/></button>
+              </form>
             </div>
           </div>
         </header>

@@ -4,7 +4,7 @@ module.exports = {
 
     async delete(req, res){
         const id = req.params.id;
-        const postDelete = await Post.findByIdAndDelete(id)
+        const postDelete = await Post.findByIdAndDelete(id, {useFindAndModify: false})
         //caso haja algum erro por algum motivo retornar msg de erro 
        /*.then(msg =>{
           res.status(200).json(msg)
