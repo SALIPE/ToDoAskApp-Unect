@@ -65,30 +65,6 @@ export default class ToDo extends Component {
       });
     
     }
-/*
-    this.adicionarTarefa = (event) => {
-      event.preventDefault();
-      const tarefas = this.state.tarefas.slice();
-      tarefas.push(this.state.inputTarefa);
-      this.setState({
-        tarefas: tarefas,
-        inputTarefa: ''
-      });
-    };
-
-    this.removeTarefa = (id) => {
-      const tarefas = this.state.tarefas.slice();
-      tarefas.splice(id, 1);
-      this.setState({tarefas});
-    };
-    
-    this.onChange = (event) => {
-      event.preventDefault();
-      const state = Object.assign({},this.state);
-      state[event.target.name] = event.target.value;
-      this.setState(state);
-    };
-  };*/
 
   handleDone= async id =>{
     
@@ -101,9 +77,6 @@ export default class ToDo extends Component {
         tarefas: response.data, 
         feitos: responseComplete.data
       });
-
-      window.location.reload();
-
   }
 
   handleDelete= async id =>{
@@ -120,17 +93,7 @@ export default class ToDo extends Component {
 
   render() {
     return (
-      /*<ListaView
-        tarefas = {this.state.tarefas}
-        inputTarefa = {this.state.inputTarefa}
-        onChange = {this.onChange}
-        adicionarTarefa = {this.adicionarTarefa}
-        removeTarefa = {this.removeTarefa}
-        
-      />*/ 
-      
       <Fragment >
-
       <div className = "conteiner">
         <header id="main-header">
           <div className = "header-content">
@@ -185,6 +148,3 @@ export default class ToDo extends Component {
   }
 }
 
-/*const ListaView = (props) => (
- 
-);*/

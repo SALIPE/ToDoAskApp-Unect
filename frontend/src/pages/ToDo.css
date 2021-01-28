@@ -20,7 +20,7 @@ div.conteiner {
   background-color: #eaffff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
 }
 
 header .header-content h1 {
@@ -54,6 +54,11 @@ header .header-content input {
   font-family: Roboto;
   font-size: 18px;
   font-weight: bolder;
+}
+
+button:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
 }
 
 header .header-content input:focus {
@@ -102,15 +107,28 @@ section div.tarefas {
   margin: auto;
   display: flex;
   width: 430px;
-  border: 1px solid #dfdfdf;
+  border: 2px solid rgb(68, 221, 196);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 25px;
   white-space: pre-line;
   margin-bottom: 6px;
   align-items: center;
 }
 
-section .tarefas p {
+section div.tarefas:hover {
+  background: rgb(68, 221, 196, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+section div.bttask {
+  opacity: 0;
+}
+
+div.tarefas:hover .bttask {
+  opacity: 1;
+}
+
+section div.tarefas p {
   margin: 14px;
   margin-left: 16px;
   width: 320px;
@@ -120,9 +138,9 @@ section div.nontarefas {
   display: flex;
   height: 100px;
   width: 230px;
-  border: 1px solid #dfdfdf;
+  border: 2px solid rgba(68, 221, 196);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 25px;
   white-space: pre-line;
   margin-bottom: 6px;
   align-items: center;
@@ -139,9 +157,9 @@ section div.nonfeitos {
   display: flex;
   height: 100px;
   width: 230px;
-  border: 1px solid #dfdfdf;
+  border: 2px solid rgba(68, 221, 196);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 25px;
   white-space: pre-line;
   margin-bottom: 6px;
   align-items: center;
